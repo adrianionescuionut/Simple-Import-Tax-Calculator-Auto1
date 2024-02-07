@@ -1,0 +1,58 @@
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),url(img/bg.jpg) no-repeat center center fixed; 
+    background-color: black;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Inter', sans-serif!important;
+}
+
+.btn-calculate {
+    background-color: #fcd503!important;
+    color: black;
+    font-weight: 700!important;
+}
+
+.btn-calculate:hover {
+    background-color: #dcbc03!important;
+    color: rgb(23, 23, 23)!important;
+    font-weight: 700!important;
+}
+
+.ab-card {
+    padding: 20px!important;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.43)!important;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)!important;
+    backdrop-filter: blur(17.6px)!important;
+    -webkit-backdrop-filter: blur(17.6px)!important;
+    border: 1px solid rgba(0, 0, 0, 0.5)!important;
+    color: white!important;
+    font-weight: 300!important;
+}
+
+input {
+    /* From https://css.glass */
+    background: rgba(159, 159, 159, 0.43)!important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)!important;
+    backdrop-filter: blur(17.6px)!important;
+    -webkit-backdrop-filter: blur(17.6px)!important;
+    border: 1px solid rgba(159, 159, 159, 0.5)!important;
+    color: white!important;
+}
+
+select {
+    /* From https://css.glass */
+    background: rgba(159, 159, 159, 0.43)!important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)!important;
+    backdrop-filter: blur(17.6px)!important;
+    -webkit-backdrop-filter: blur(17.6px)!important;
+    border: 1px solid rgba(159, 159, 159, 0.5)!important;
+    color: white!important;
+}
+
+.alert-price {
+    background-color: #dcbc03;
+}

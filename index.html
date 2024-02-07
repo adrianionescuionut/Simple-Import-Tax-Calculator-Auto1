@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoBids.ro - Calculator Taxe Auto1</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="description" content="Calculator taxe pentru achiziționarea de vehicule pe Auto1 doar pe AutoBids.ro!">
+    <meta name="keywords" content="">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="Auto Bids Concept - AutoBids.ro">
+    <meta property="og:description" content="Calculator taxe pentru achiziționarea de vehicule pe Auto1 doar pe AutoBids.ro!">
+    <meta property="og:image" content="https://autobids.ro/calculator_auto1/img/bg.jpg">
+    <meta property="og:url" content="https://autobids.ro/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card ab-card">
+            <div class="card-body">
+                <img src="logo.webp" class="mb-3" alt="LOGO AUTO BIDS CONCEPT" width="200">
+                <div class="form-group mb-3">
+                    <label for="castigMasina">Pret Autovehicul:</label>
+                    <input type="number" id="castigMasina" class="form-control" required >
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="pretTransport">Preț Transport:</label>
+                    <input type="number" id="pretTransport" class="form-control" required >
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="selectTari">Țara de Achizitie:</label>
+                    <select id="selectTari" class="form-control" required >
+                    </select>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="areAlDoileaSetRoti">Are al 2-lea set de roți:</label>
+                    <input type="checkbox" id="areAlDoileaSetRoti">
+                  </div>
+                  <button id="calculeazaBtn" class="btn btn-calculate">Calculează</button>
+                </div>
+                <div id="pretTotal" class="alert alert-price" style="display: none;"></div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        var tari = {
+          austria: { id: "at", nume: "Austria", taxaLogistica: 259, taxaDocumente: 149 },
+          belgia: { id: "be", nume: "Belgia", taxaLogistica: 249, taxaDocumente: 139 },
+          germania: { id: "de", nume: "Germania", taxaLogistica: 249, taxaDocumente: 139 },
+          danemarca: { id: "dk", nume: "Danemarca", taxaLogistica: 249, taxaDocumente: 129 },
+          spania: { id: "es", nume: "Spania", taxaLogistica: 229, taxaDocumente: 245 },
+          finlanda: { id: "fi", nume: "Finlanda", taxaLogistica: 219, taxaDocumente: 119 },
+          franta: { id: "fr", nume: "Franța", taxaLogistica: 269, taxaDocumente: 89 },
+          italia: { id: "it", nume: "Italia", taxaLogistica: 189, taxaDocumente: 379 },
+          olanda: { id: "nl", nume: "Olanda", taxaLogistica: 229, taxaDocumente: 185 },
+          polonia: { id: "pl", nume: "Polonia", taxaLogistica: 149, taxaDocumente: 99 },
+          portugalia: { id: "pt", nume: "Portugalia", taxaLogistica: 159, taxaDocumente: 189 },
+          suedia: { id: "se", nume: "Suedia", taxaLogistica: 252, taxaDocumente: 149 }
+        };
+   
+function generareOptiuni() {
+  var select = document.getElementById("selectTari");
+
+ 
+  select.innerHTML = "";
+
+ 
+  Object.keys(tari).forEach(function(key) {
+    var option = document.createElement("option");
+    option.value = key;
+    option.text = tari[key].nume; 
+    select.add(option);
+  });
+}
+
+
+generareOptiuni();
+
+
+function calculeazaCostTotal() {
+  var castigMasina = parseFloat(document.getElementById("castigMasina").value);
+  var pretTransport = parseFloat(document.getElementById("pretTransport").value);
+  var taraSelectataKey = document.getElementById("selectTari").value;
+  var taraSelectata = tari[taraSelectataKey];
+  var taxaLogistica = taraSelectata.taxaLogistica;
+  var taxaDocumente = taraSelectata.taxaDocumente;
+  var areAlDoileaSetRoti = document.getElementById("areAlDoileaSetRoti").checked;
+  var costTotal = castigMasina + pretTransport + taxaLogistica + taxaDocumente;
+  
+  if (areAlDoileaSetRoti) {
+    costTotal += 29;
+  }
+
+ 
+  document.getElementById("pretTotal").textContent = "Cost autovehicul: " + costTotal.toFixed(2) + " €";
+  document.getElementById("pretTotal").style.display = "block";
+}
+
+
+document.getElementById("calculeazaBtn").addEventListener("click", function() {
+  calculeazaCostTotal();
+});
+        </script>
+</body>
+</html>
